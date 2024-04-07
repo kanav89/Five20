@@ -1,46 +1,91 @@
-'use client';
+//import { BellRing, Check } from "lucide-react"
 
-import { HoverEffect } from "../../components/ui/card-hover-effect";
+import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
 
-export function AboutPage() {
+
+type CardProps = React.ComponentProps<typeof Card>
+
+export function AboutPage({ className, ...props }: CardProps) {
   return (
-    <div className="max-w-5xl mx-auto px-8 pt-28">
-      <h1 className="font-bold text-3xl md:text-4xl lg:text-5xl flex flex-col items-center justify-center">About Us!</h1>
-      <HoverEffect items={projects} />
+    <div className="flex items-center pt-28 flex-wrap">
+      {/* First row with two cards */}
+      <div className="flex justify-center w-full mb-8 space-x-4">
+        <Card className={cn("w-[250px]", className)} {...props}>
+          <CardHeader>
+            <CardTitle className="text-lg">Dhruv Bansal</CardTitle>
+            <CardDescription className="text-md">Sophomore majoring in Computer Science at ASU</CardDescription>
+          </CardHeader>
+          <CardContent className="grid gap-4">
+            <div className="flex items-center space-x-4 rounded-md border p-4"></div>
+          </CardContent>
+          <CardFooter>
+            <Button className="w-full">Learn More</Button>
+          </CardFooter>
+        </Card>
+        <Card className={cn("w-[250px]", className)} {...props}>
+          <CardHeader>
+            <CardTitle className="text-lg">Kanav Gupta</CardTitle>
+            <CardDescription className="text-md">Sophomore majoring in Computer Science at ASU</CardDescription>
+          </CardHeader>
+          <CardContent className="grid gap-4">
+            <div className="flex items-center space-x-4 rounded-md border p-4"></div>
+          </CardContent>
+          <CardFooter>
+            <Button className="w-full">Learn More</Button>
+          </CardFooter>
+        </Card>
+      </div>
+
+      {/* Second row with three cards */}
+      <div className="flex justify-center w-full space-x-4">
+        <Card className={cn("w-[280px]", className)} {...props}>
+          <CardHeader>
+            <CardTitle className="text-lg">Twanda Vera</CardTitle>
+            <CardDescription className="text-md">Graduate student studying Global Management at ASU</CardDescription>
+          </CardHeader>
+          <CardContent className="grid gap-4">
+            <div className="flex items-center space-x-4 rounded-md border p-4 space-x-4"></div>
+          </CardContent>
+          <CardFooter>
+            <Button className="w-full">Learn More</Button>
+          </CardFooter>
+        </Card>
+        <Card className={cn("w-[280px]", className)} {...props}>
+          <CardHeader>
+            <CardTitle className="text-lg">Shreyas Bachiraju</CardTitle>
+            <CardDescription className="text-md">Sophomore majoring in Informatics at ASU</CardDescription>
+          </CardHeader>
+          <CardContent className="grid gap-4">
+            <div className="flex items-center space-x-4 rounded-md border p-4"></div>
+          </CardContent>
+          <CardFooter>
+            <Button className="w-full">Learn More</Button>
+          </CardFooter>
+        </Card>
+        <Card className={cn("w-[280px]", className)} {...props}>
+          <CardHeader>
+            <CardTitle className="text-lg">Vansh Gupta</CardTitle>
+            <CardDescription className="text-md">Sophomore majoring in Computer Science at ASU</CardDescription>
+          </CardHeader>
+          <CardContent className="grid gap-4">
+            <div className="flex items-center space-x-4 rounded-md border p-4"></div>
+          </CardContent>
+          <CardFooter>
+            
+            <Button className="w-full">Learn More</Button>
+          </CardFooter>
+        </Card>
+      </div>
     </div>
   );
 }
-export const projects = [
-  {
-    title: "Dhruv Bansal",
-    description:
-      "Sophomore at ASU majoring in Computer Science",
-    link: "https://stripe.com",
-  },
-  {
-    title: "Kanav Gupta",
-    description:
-      "Sophomore at ASU majoring in Computer Science",
-    link: "https://netflix.com",
-  },
-  {
-    title: "Shreyas Bachiraju",
-    description:
-      "Sophomore at ASU majoring in Informatics",
-    link: "https://google.com",
-  },
-  {
-    title: "Twanda Vera",
-    description:
-      "Graduate student at ASU majoring in Global Business",
-    link: "https://meta.com",
-  },
-  
-  {
-    title: "Vansh Gupta",
-    description:
-      "Sophomore at ASU majoring in Computer Science",
-    link: "https://microsoft.com",
-  },
-];
 export default AboutPage;
