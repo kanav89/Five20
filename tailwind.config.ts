@@ -69,6 +69,17 @@ const config = {
         sm: "calc(var(--radius) - 4px)",
       },
       keyframes: {
+        spotlight: {
+          "0%": {
+            opacity: "0",
+            transform: "translate(-72%, -62%) scale(0.5)",
+          },
+          "100%": {
+            opacity: "1",
+            transform: "translate(-50%,-40%) scale(1)",
+          },
+        },
+
         shimmer: {
           from: {
             backgroundPosition: "0 0",
@@ -77,6 +88,7 @@ const config = {
             backgroundPosition: "-200% 0",
           },
         },
+
         aurora: {
           from: {
             backgroundPosition: "50% 50%, 50% 50%",
@@ -100,6 +112,7 @@ const config = {
         },
       },
       animation: {
+        spotlight: "spotlight 2s ease .75s 1 forwards",
         aurora: "aurora 60s linear infinite",
 
         scroll:

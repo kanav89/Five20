@@ -20,19 +20,19 @@ const testimonials = [
     quote:
       "Using the marketplace app to manage our excess inventory has been a game-changer for Bella Vista Kitchen. It's incredibly user-friendly and has helped us significantly reduce waste. We've been able to buy ingredients at lower prices and sell our surplus, improving our bottom line. Highly recommend!",
     name: "Charles Dickens",
-    title: "A Tale of Two Cities",
+    title: "The Taj Mahal",
   },
   {
     quote:
       "We were skeptical about joining another platform but decided to give it a try. Best decision ever! Not only did we clear out space by selling excess inventory, but we also found rare ingredients from other restaurants. The customer service is top-notch, always ready to assist with any issues.",
     name: "William Shakespeare",
-    title: "Hamlet",
+    title: "Mr. Kumar's Garden",
   },
   {
     quote:
       "Being part of this marketplace has fostered a sense of community among local restaurants. It's amazing how we can support each other by swapping ingredients. Bella Vista Kitchen has saved a considerable amount on ingredients since joining. The app's inventory management tool is a bonus!",
     name: "Edgar Allan Poe",
-    title: "A Dream Within a Dream",
+    title: "The Raven",
   },
   {
     quote:
@@ -45,6 +45,6 @@ const testimonials = [
     quote:
       "As a small restaurant, every penny counts. This app has allowed us to optimize our inventory like never before. We've purchased high-quality ingredients at a fraction of the cost and sold items that would have otherwise gone to waste. It's empowering to know we have control over our inventory in such a detailed way.",
     name: "Herman Melville",
-    title: "Moby-Dick",
+    title: "Pedal Haus Cafe",
   },
 ];

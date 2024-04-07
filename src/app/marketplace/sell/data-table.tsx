@@ -1,5 +1,6 @@
 "use client";
 import { Button } from "@/components/ui/button";
+import toast, { Toaster } from "react-hot-toast";
 import {
   ColumnDef,
   flexRender,
@@ -36,7 +37,7 @@ export function DataTable<TData, TValue>({
     []
   );
   const [rowSelection, setRowSelection] = React.useState({});
-
+  const notify = () => toast.success("Added your items for sale.");
   const table = useReactTable({
     data,
     columns,
@@ -47,17 +48,15 @@ export function DataTable<TData, TValue>({
     onColumnFiltersChange: setColumnFilters,
     getFilteredRowModel: getFilteredRowModel(),
     onRowSelectionChange: setRowSelection,
-
     state: {
       columnFilters,
       rowSelection,
-
       sorting,
     },
   });
 
   return (
-    <div className="rounded-md border">
+    <div className="rounded-md border p-4">
       <div className="flex items-center py-4">
         <Input
           placeholder="Filter ingredients..."
@@ -113,6 +112,27 @@ export function DataTable<TData, TValue>({
         </TableBody>
       </Table>
       <div className="flex items-center justify-end space-x-2 py-4">
+        <Button variant="outline" size="sm" onClick={() => notify()}>
+          Add Item(s)
+          <Toaster
+            toastOptions={{
+              success: {
+                style: {
+                  background: "green",
+                  color: "white",
+                  textSizeAdjust: "auto",
+                  fontSize: "15px",
+                  minBlockSize: "70px",
+                },
+              },
+              error: {
+                style: {
+                  background: "red",
+                },
+              },
+            }}
+          />
+        </Button>
         <Button
           variant="outline"
           size="sm"

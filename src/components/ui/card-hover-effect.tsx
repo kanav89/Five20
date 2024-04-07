@@ -3,6 +3,7 @@ import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import { Button } from "./button";
+import toast, { Toaster } from "react-hot-toast";
 
 export const HoverEffect = ({
   items,
@@ -15,7 +16,7 @@ export const HoverEffect = ({
     bestBy: string;
     supplier: string;
     ETA: string;
-    link: string;
+
     imageLink: string;
   }[];
   className?: string;
@@ -30,13 +31,7 @@ export const HoverEffect = ({
       )}
     >
       {items.map((item, idx) => (
-        <Link
-          href={item.link}
-          key={item.link}
-          className="relative group block p-2 h-full w-full"
-          onMouseEnter={() => setHoveredIndex(idx)}
-          onMouseLeave={() => setHoveredIndex(null)}
-        >
+        <>
           <AnimatePresence>
             {hoveredIndex === idx && (
               <motion.span
@@ -63,7 +58,7 @@ export const HoverEffect = ({
             supplier={item.supplier}
             ETA={item.ETA}
           />
-        </Link>
+        </>
       ))}
     </div>
   );
@@ -143,14 +138,39 @@ export const CardDescription = ({
   supplier: string;
   ETA: string;
 }) => {
+  const notify = () => toast.success("Added your items to cart.");
   return (
     <>
+      <Toaster
+        toastOptions={{
+          success: {
+            style: {
+              background: "green",
+              color: "white",
+              textSizeAdjust: "auto",
+              fontSize: "15px",
+              minBlockSize: "70px",
+            },
+          },
+          error: {
+            style: {
+              background: "red",
+            },
+          },
+        }}
+        containerStyle={{
+          top: 110,
+          left: 20,
+          bottom: 20,
+          right: 20,
+        }}
+      />
       <p className="text-zinc-700 text-sm mt-2">Price: {price}</p>
       <p className="text-zinc-700 text-sm">Quantity: {quantity}</p>
       <p className="text-zinc-700 text-sm">Best By: {bestBy}</p>
       <p className="text-zinc-700 text-sm">Supplier: {supplier}</p>
       <p className="text-zinc-700 text-sm mb-2">ETA: {ETA}</p>
-      <Button>Add to Cart</Button>
+      <Button onClick={() => notify()}>Add to Cart</Button>
     </>
   );
 };

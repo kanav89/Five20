@@ -1,46 +1,55 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { TextGenerateEffect } from "@/components/ui/text-generate-effect";
-import BeatLoader from "react-spinners/BeatLoader";
-import { analyticsCompletion } from "../../actions/analytics-completion";
-import { useTransition } from "react";
+import BarLoader from "react-spinners/BarLoader";
+import { Spotlight } from "@/components/ui/spotlight";
 const AnalyticsPage = () => {
-  // State to store the LLM output
-  const [llmOutput, setLlmOutput]: any = useState();
-  const [loading, setLoading] = useState(false); // New state for managing loading state.
-  const [isPending, startTransition] = useTransition();
+  const [llmOutput, setLlmOutput] = useState(""); // Removed any type since it's not valid here.
+  const [loading, setLoading] = useState(false);
 
-  // Fetch the LLM output from the server
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const response = await analyticsCompletion();
+        const response = await fetch("/api/analytics-report", {
+          method: "GET",
+          headers: { "Content-Type": "application/json" },
+        });
         const data = await response.json();
         setLlmOutput(data.answer);
-      } catch (error) {
-        console.error("Failed to fetch analytics data:", error);
-        setLlmOutput("Error fetching data. Please try again.");
-      } finally {
         setLoading(false);
+      } catch (error) {
+        // Catch block for any errors in the try block
+        setLoading(false);
+        setLlmOutput("An unexpected error occurred");
       }
     };
 
     fetchData();
-  }, []);
+  }, []); // Correctly closed the useEffect hook
+
   // Define words to show in TextGenerateEffect (can be static or dynamic)
-  const words = `Fetching your customized analytics report...`;
+  const words = "Fetching your customized analytics report...";
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen">
       <div className="stats-div items-center w-[50%] text-center">
-        <TextGenerateEffect words={words} />
-
+        <Spotlight
+          className="-top-40 left-0 md:left-60 md:-top-20"
+          fill="black"
+        />
+        <h1 className="font-bold text-8xl">Analytics</h1>
         {loading ? (
-          <BeatLoader></BeatLoader>
+          <div className="flex flex-col items-center justify-center space-y-10">
+            <TextGenerateEffect words={words} />
+            <BarLoader />
+          </div>
         ) : (
-          <div className="mt-4 text-left" style={{ whiteSpace: "pre-line" }}>
-            {llmOutput}
+          <div
+            className="flex flex-col items-center justify-center space-y-10"
+            style={{ whiteSpace: "pre-line" }}
+          >
+            No data found. Please try again later.
           </div>
         )}
       </div>
