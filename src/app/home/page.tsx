@@ -6,12 +6,7 @@ import { Button } from "@/components/ui/button";
 import RegisterPage from "../register/page";
 import Link from "next/link";
 import React, { useState } from "react";
-import {
-  HoveredLink,
-  Menu,
-  MenuItem,
-  ProductItem,
-} from "@/components/ui/navbar-menu";
+
 import { cn } from "@/lib/utils";
 const World = dynamic(
   () => import("../../components/ui/globe").then((m) => m.World),
@@ -19,35 +14,6 @@ const World = dynamic(
     ssr: false,
   }
 );
-
-function Navbar({ className }: { className?: string }) {
-  const [active, setActive] = useState<string | null>(null);
-  return (
-    <div
-      className={cn("fixed top-10 inset-x-0 max-w-2xl mx-auto z-50", className)}
-    >
-      <Menu setActive={setActive}>
-        <MenuItem setActive={setActive} active={null} item="About Us">
-          <Link href={"/about"}></Link>
-        </MenuItem>
-        <MenuItem
-          setActive={setActive}
-          active={null}
-          item="Our Mission"
-        ></MenuItem>
-
-        <MenuItem setActive={setActive} active={active} item="Services">
-          <div className="flex flex-col space-y-4 text-sm">
-            <HoveredLink href="/marketplace">Marketplace</HoveredLink>
-            <HoveredLink href="/analytics">Analytics</HoveredLink>
-            <HoveredLink href="/ai-helper">Recommendations</HoveredLink>
-          </div>
-        </MenuItem>
-        <ModeToggle></ModeToggle>
-      </Menu>
-    </div>
-  );
-}
 
 export function HomePage() {
   const globeConfig = {
@@ -437,12 +403,14 @@ export function HomePage() {
   ];
 
   return (
-    <div className="space-y-10">
-      <Navbar className="top-2" />
-      <Button>
-        <Link href="/register">Get Started</Link>
-      </Button>
-      <div className="flex flex-row items-center justify-center py-20 h-screen md:h-auto dark:bg-black bg-white relative w-full">
+    <div>
+      <div className="flex flex-col items-center justify-center py-40 h-screen md:h-auto dark:bg-black bg-white relative w-full">
+        <div className="button-div flex flex-col items-center justify-center py-5">
+          <h1 className="text-8xl text-emerald-800 font-bold">Five20</h1>
+          <Button className="items-center">
+            <Link href="/register">Get Started</Link>
+          </Button>
+        </div>
         <div className="max-w-7xl mx-auto w-full relative overflow-hidden h-full md:h-[40rem] px-4">
           <motion.div
             initial={{
@@ -465,6 +433,7 @@ export function HomePage() {
               This is the description for the platform. :)
             </p>
           </motion.div>
+
           <div className="absolute w-full bottom-0 inset-x-0 h-40 bg-gradient-to-b pointer-events-none select-none from-transparent dark:to-black to-white z-40" />
           <div className="absolute w-full -bottom-20 h-72 md:h-full z-10">
             <World data={sampleArcs} globeConfig={globeConfig} />;
