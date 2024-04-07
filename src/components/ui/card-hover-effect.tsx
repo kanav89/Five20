@@ -1,7 +1,7 @@
+import React, { useState } from "react";
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
-import { useState } from "react";
 
 export const HoverEffect = ({
   items,
@@ -9,8 +9,13 @@ export const HoverEffect = ({
 }: {
   items: {
     title: string;
-    description: string;
+    price: string;
+    quantity: string;
+    bestBy: string;
+    supplier: string;
+    ETA: string;
     link: string;
+    imageLink: string;
   }[];
   className?: string;
 }) => {
@@ -19,22 +24,22 @@ export const HoverEffect = ({
   return (
     <div
       className={cn(
-        "grid grid-cols-1 md:grid-cols-2  lg:grid-cols-3  py-10",
+        "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 py-10",
         className
       )}
     >
       {items.map((item, idx) => (
         <Link
-          href={item?.link}
-          key={item?.link}
-          className="relative group  block p-2 h-full w-full"
+          href={item.link}
+          key={item.link}
+          className="relative group block p-2 h-full w-full"
           onMouseEnter={() => setHoveredIndex(idx)}
           onMouseLeave={() => setHoveredIndex(null)}
         >
           <AnimatePresence>
             {hoveredIndex === idx && (
               <motion.span
-                className="absolute inset-0 h-full w-full bg-neutral-200 dark:bg-slate-800/[0.8] block  rounded-3xl"
+                className="absolute inset-0 h-full w-full bg-neutral-200 dark:bg-slate-800/[0.8] block rounded-3xl"
                 layoutId="hoverBackground"
                 initial={{ opacity: 0 }}
                 animate={{
@@ -48,10 +53,15 @@ export const HoverEffect = ({
               />
             )}
           </AnimatePresence>
-          <Card>
-            <CardTitle>{item.title}</CardTitle>
-            <CardDescription>{item.description}</CardDescription>
-          </Card>
+          <Card
+            image={item.imageLink}
+            title={item.title}
+            price={item.price}
+            quantity={item.quantity}
+            bestBy={item.bestBy}
+            supplier={item.supplier}
+            ETA={item.ETA}
+          />
         </Link>
       ))}
     </div>
@@ -60,10 +70,22 @@ export const HoverEffect = ({
 
 export const Card = ({
   className,
-  children,
+  image,
+  title,
+  price,
+  quantity,
+  bestBy,
+  supplier,
+  ETA,
 }: {
   className?: string;
-  children: React.ReactNode;
+  image?: string;
+  title: string;
+  price: string;
+  quantity: string;
+  bestBy: string;
+  supplier: string;
+  ETA: string;
 }) => {
   return (
     <div
@@ -72,12 +94,27 @@ export const Card = ({
         className
       )}
     >
-      <div className="relative z-50">
-        <div className="p-4">{children}</div>
+      {image && (
+        <img
+          src={image}
+          alt={title}
+          className="rounded-2xl w-full object-cover h-40"
+        />
+      )}
+      <div className="relative z-50 p-4">
+        <CardTitle>{title}</CardTitle>
+        <CardDescription
+          price={price}
+          quantity={quantity}
+          bestBy={bestBy}
+          supplier={supplier}
+          ETA={ETA}
+        />
       </div>
     </div>
   );
 };
+
 export const CardTitle = ({
   className,
   children,
@@ -91,21 +128,27 @@ export const CardTitle = ({
     </h4>
   );
 };
+
 export const CardDescription = ({
-  className,
-  children,
+  price,
+  quantity,
+  bestBy,
+  supplier,
+  ETA,
 }: {
-  className?: string;
-  children: React.ReactNode;
+  price: string;
+  quantity: string;
+  bestBy: string;
+  supplier: string;
+  ETA: string;
 }) => {
   return (
-    <p
-      className={cn(
-        "mt-8 text-zinc-400 tracking-wide leading-relaxed text-sm",
-        className
-      )}
-    >
-      {children}
-    </p>
+    <>
+      <p className="text-zinc-400 text-sm mt-2">Price: {price}</p>
+      <p className="text-zinc-400 text-sm">Quantity: {quantity}</p>
+      <p className="text-zinc-400 text-sm">Best By: {bestBy}</p>
+      <p className="text-zinc-400 text-sm">Supplier: {supplier}</p>
+      <p className="text-zinc-400 text-sm mb-2">ETA: {ETA}</p>
+    </>
   );
 };
