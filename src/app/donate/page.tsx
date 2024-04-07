@@ -72,7 +72,7 @@ const donate = () => {
   return (
     <div className="max-w-5xl mx-auto px-8 flex flex-col items-center min-h-screen p-40">
 
-      <div className="mr-36 search-div w-full items-start">
+      <div className="search-div w-full items-start">
         <input
           type="text"
           placeholder={`Search for agency...`}
