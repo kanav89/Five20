@@ -25,7 +25,6 @@ export function AboutPage({ className, ...props }: CardProps) {
             <CardDescription className="text-md">Sophomore majoring in Computer Science at ASU</CardDescription>
           </CardHeader>
           <CardContent className="grid gap-4">
-            <div className="flex items-center space-x-4 rounded-md border p-4"></div>
           </CardContent>
           <CardFooter>
             <Button className="w-full">Learn More</Button>
@@ -37,7 +36,6 @@ export function AboutPage({ className, ...props }: CardProps) {
             <CardDescription className="text-md">Sophomore majoring in Computer Science at ASU</CardDescription>
           </CardHeader>
           <CardContent className="grid gap-4">
-            <div className="flex items-center space-x-4 rounded-md border p-4"></div>
           </CardContent>
           <CardFooter>
             <Button className="w-full">Learn More</Button>
@@ -53,7 +51,6 @@ export function AboutPage({ className, ...props }: CardProps) {
             <CardDescription className="text-md">Graduate student studying Global Management at ASU</CardDescription>
           </CardHeader>
           <CardContent className="grid gap-4">
-            <div className="flex items-center space-x-4 rounded-md border p-4 space-x-4"></div>
           </CardContent>
           <CardFooter>
             <Button className="w-full">Learn More</Button>
@@ -65,7 +62,6 @@ export function AboutPage({ className, ...props }: CardProps) {
             <CardDescription className="text-md">Sophomore majoring in Informatics at ASU</CardDescription>
           </CardHeader>
           <CardContent className="grid gap-4">
-            <div className="flex items-center space-x-4 rounded-md border p-4"></div>
           </CardContent>
           <CardFooter>
             <Button className="w-full">Learn More</Button>
@@ -77,7 +73,6 @@ export function AboutPage({ className, ...props }: CardProps) {
             <CardDescription className="text-md">Sophomore majoring in Computer Science at ASU</CardDescription>
           </CardHeader>
           <CardContent className="grid gap-4">
-            <div className="flex items-center space-x-4 rounded-md border p-4"></div>
           </CardContent>
           <CardFooter>
             
