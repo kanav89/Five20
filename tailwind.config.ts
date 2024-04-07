@@ -3,6 +3,7 @@ const { fontFamily } = require("tailwindcss/defaultTheme");
 const {
   default: flattenColorPalette,
 } = require("tailwindcss/lib/util/flattenColorPalette");
+
 const config = {
   darkMode: ["class"],
   content: [
