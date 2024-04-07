@@ -71,6 +71,8 @@ export default function MarketplacePage() {
 
   return (
     <div className="max-w-5xl mx-auto px-8 flex flex-col items-center min-h-screen p-40">
+      <h1>Welcome back Joe!</h1>
+      <p>Based on our predictive model </p>
       <div className="search-div w-[200px]">
         <input
           type="text"
