@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
+import { Button } from "./button";
 
 export const HoverEffect = ({
   items,
@@ -90,7 +91,7 @@ export const Card = ({
   return (
     <div
       className={cn(
-        "rounded-2xl h-full w-full p-4 overflow-hidden bg-black border border-transparent dark:border-white/[0.2] group-hover:border-slate-700 relative z-20",
+        "rounded-2xl h-full w-full p-4 overflow-hidden bg-white border border-transparent dark:border-white/[0.2] group-hover:border-slate-700 relative z-20",
         className
       )}
     >
@@ -123,7 +124,7 @@ export const CardTitle = ({
   children: React.ReactNode;
 }) => {
   return (
-    <h4 className={cn("text-zinc-100 font-bold tracking-wide mt-4", className)}>
+    <h4 className={cn("text-black font-bold tracking-wide mt-4", className)}>
       {children}
     </h4>
   );
@@ -144,11 +145,12 @@ export const CardDescription = ({
 }) => {
   return (
     <>
-      <p className="text-zinc-400 text-sm mt-2">Price: {price}</p>
-      <p className="text-zinc-400 text-sm">Quantity: {quantity}</p>
-      <p className="text-zinc-400 text-sm">Best By: {bestBy}</p>
-      <p className="text-zinc-400 text-sm">Supplier: {supplier}</p>
-      <p className="text-zinc-400 text-sm mb-2">ETA: {ETA}</p>
+      <p className="text-zinc-700 text-sm mt-2">Price: {price}</p>
+      <p className="text-zinc-700 text-sm">Quantity: {quantity}</p>
+      <p className="text-zinc-700 text-sm">Best By: {bestBy}</p>
+      <p className="text-zinc-700 text-sm">Supplier: {supplier}</p>
+      <p className="text-zinc-700 text-sm mb-2">ETA: {ETA}</p>
+      <Button>Add to Cart</Button>
     </>
   );
 };
