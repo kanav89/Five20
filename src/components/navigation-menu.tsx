@@ -19,6 +19,7 @@ function Navbar({ className }: { className?: string }) {
       className={cn("fixed top-10 inset-x-0 max-w-2xl mx-auto z-50", className)}
     >
       <Menu setActive={setActive}>
+       
         <MenuItem setActive={setActive} active={active} item="About Us">
           <div className="flex flex-col space-y-4 text-sm">
             <HoveredLink href="/about">Who are we?</HoveredLink>
