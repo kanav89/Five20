@@ -4,6 +4,7 @@ import { motion, AnimatePresence, useScroll } from "framer-motion";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { MagicButton } from "../magic-button";
+import { ShoppingBasketIcon, ShoppingCartIcon } from "lucide-react";
 export const FloatingNav = ({
   navItems,
   className,
@@ -50,11 +51,9 @@ export const FloatingNav = ({
               <span className="hidden sm:block text-sm">{navItem.name}</span>
             </Link>
           ))}
-          <MagicButton>
-            <Link href={"/register"} className="text-xs w-full">
-              Get Started
-            </Link>
-          </MagicButton>
+          <Link href={"/shopping-cart"} className="text-xs w-full px-2">
+            <ShoppingCartIcon className="text-black" />
+          </Link>
         </motion.div>
       )}
     </AnimatePresence>

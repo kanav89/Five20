@@ -1,8 +1,8 @@
 "use server";
-import { NextRequest } from "next/server";
-const { Configuration, OpenAIApi } = require("openai");
+import { NextResponse } from "next/server";
+import OpenAIApi from "openai";
 
-export async function analyticsCompletion(req: NextRequest) {
+export async function GET(req: Request) {
   const data = {
     weekly_transactions: [
       {
@@ -472,42 +472,48 @@ export async function analyticsCompletion(req: NextRequest) {
     ],
   };
   const prompt = `
-    As a seasoned data analyst, you're given a rich dataset detailing a restaurant's daily operations, captured in JSON format. This data encompasses daily sales figures, comprehensive details on menu items, including pricing and ingredients, as well as a current inventory snapshot indicating the shelf life of both perishable and non-perishable ingredients.
-    \`\`\`
-    ${JSON.stringify(data, null, 2)}
-    \`\`\`
-    
-    Your expertise is required to analyze this dataset with the following aims:
-    
-    Ingredient Usage Forecast: Provide a concise, 50-word prediction on ingredient demand for the next three days, focusing on managing perishables to reduce waste. Highlight key ingredients to prioritize for usage.
-    
-    Surplus Identification & Promotion: Identify up to three perishable ingredients in surplus, nearing their shelf life end. Strictly mention that they have to sell it and don't suggest any promotion of dishes.
-    
-    Replenishment Recommendations:
-        - Urgent: List all the ingredients that are negative or 0 in quantity and tell them that they immediately need to purchase it.
-        - List up to three ingredients predicted to run low, considering their usage rate and shelf life. Recommend timely procurement of these ingredients, focusing on perishables essential for popular menu items.
-    
-    Data Overview:
-    - Transactions Data: Contains sales transactions by date, including quantities sold per menu item.
-    - Menu Data: Details on menu items, their pricing, and required ingredients.
-    - Inventory Data: Current levels of each ingredient, noting perishability and shelf life.
-    
-    Expected Deliverables:
-    - Forecast Insight: A brief forecast pinpointing ingredients for focused usage, buying, or selling to optimize inventory and minimize waste.
-    - Surplus Actions: Up to three key perishable items identified as surplus, with suggestions to sell them. Strictly mention that they have to sell it and don't suggest any promotion of dishes.
-    - Replenishment Actions: Up to three ingredients flagged for imminent replenishment, with advice on the optimal buying timeframe to ensure menu readiness and ingredient freshness.
-    
-    Your insights will guide the restaurant in making strategic decisions for inventory management and marketing, aiming for a perfect balance between meeting demand and reducing waste. Keep the total output under 150 words for clarity and direct application in operational strategies.
-    `;
-  const configuration = new Configuration({
-    apiKey: process.env.OPENAI_API_KEY,
-  });
-  const openai = new OpenAIApi(configuration);
+        As a seasoned data analyst, you're given a rich dataset detailing a restaurant's daily operations, captured in JSON format. This data encompasses daily sales figures, comprehensive details on menu items, including pricing and ingredients, as well as a current inventory snapshot indicating the shelf life of both perishable and non-perishable ingredients.
+        \`\`\`
+        ${JSON.stringify(data, null, 2)}
+        \`\`\`
+        
+        Your expertise is required to analyze this dataset with the following aims:
+        
+        Ingredient Usage Forecast: Provide a concise, 50-word prediction on ingredient demand for the next three days, focusing on managing perishables to reduce waste. Highlight key ingredients to prioritize for usage.
+        
+        Surplus Identification & Promotion: Identify up to three perishable ingredients in surplus, nearing their shelf life end. Strictly mention that they have to sell it and don't suggest any promotion of dishes.
+        
+        Replenishment Recommendations:
+            - Urgent: List all the ingredients that are negative or 0 in quantity and tell them that they immediately need to purchase it.
+            - List up to three ingredients predicted to run low, considering their usage rate and shelf life. Recommend timely procurement of these ingredients, focusing on perishables essential for popular menu items.
+        
+        Data Overview:
+        - Transactions Data: Contains sales transactions by date, including quantities sold per menu item.
+        - Menu Data: Details on menu items, their pricing, and required ingredients.
+        - Inventory Data: Current levels of each ingredient, noting perishability and shelf life.
+        
+        Expected Deliverables:
+        - Forecast Insight: A brief forecast pinpointing ingredients for focused usage, buying, or selling to optimize inventory and minimize waste.
+        - Surplus Actions: Up to three key perishable items identified as surplus, with suggestions to sell them. Strictly mention that they have to sell it and don't suggest any promotion of dishes.
+        - Replenishment Actions: Up to three ingredients flagged for imminent replenishment, with advice on the optimal buying timeframe to ensure menu readiness and ingredient freshness.
+        
+        Your insights will guide the restaurant in making strategic decisions for inventory management and marketing, aiming for a perfect balance between meeting demand and reducing waste. Keep the total output under 150 words for clarity and direct application in operational strategies.
+        `;
 
-  const response = await openai.createChatCompletion({
-    model: "gpt-4",
-    messages: [{ role: "user", content: prompt }],
+  const openai = new OpenAIApi({
+    apiKey: "",
   });
+  try {
+    const data = await openai.chat.completions.create({
+      model: "gpt-3.5-turbo",
+      messages: [{ role: "system", content: prompt }],
+    });
 
-  return { answer: response.data.choices[0].message.content };
+    return new NextResponse(
+      JSON.stringify({ answer: data.choices[0].message.content })
+    );
+  } catch (error) {
+    console.log(error);
+    return new NextResponse(JSON.stringify({ error: "Something went wrong!" }));
+  }
 }

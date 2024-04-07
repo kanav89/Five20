@@ -12,7 +12,7 @@ const MarketplacePage = () => {
         <MagicButton>
           <Link href="/marketplace/buy">
             <div className="flex flex-row items-center">
-              <ShoppingBag />
+              <ShoppingBag className="mr-2" />
               Buy
             </div>
           </Link>
@@ -20,7 +20,7 @@ const MarketplacePage = () => {
         <MagicButton>
           <Link href="/marketplace/sell">
             <div className="flex flex-row items-center">
-              <DollarSign></DollarSign>
+              <DollarSign className="mr-2" />
               Sell
             </div>
           </Link>

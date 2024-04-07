@@ -421,7 +421,7 @@ export function HomePage() {
           </div>
 
           <div className="items-center w-full flex flex-col">
-            <h1 className="text-4xl font-bold text-black">What do we do?</h1>
+            <h1 className="text-4xl font-bold text-black">What we do?</h1>
             <p className="text-center text-base md:text-lg font-normal text-neutral-700 dark:text-neutral-200 max-w-md mx-auto p-10">
               Five20 empowers restaurants to become beacons of sustainability.
               Through our user-friendly mobile platform, we connect businesses

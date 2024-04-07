@@ -2,7 +2,6 @@
 
 import React, { useState } from "react";
 import { HoverEffect } from "@/components/ui/card-hover-effect";
-import { InfiniteMovingCardsDemo } from "@/components/infinite-scroll";
 export default function BuyPage() {
   // State to hold the search term
   const [searchTerm, setSearchTerm] = useState("");
@@ -15,7 +14,6 @@ export default function BuyPage() {
       bestBy: "2022-12-12",
       supplier: "Microsoft, Grade-A Farms",
       ETA: "20 min",
-      link: "https://stripe.com",
       imageLink:
         "https://foodprint.org/wp-content/uploads/2018/10/AdobeStock_195401764.jpeg",
     },
@@ -27,7 +25,6 @@ export default function BuyPage() {
       bestBy: "2022-12-12",
       supplier: "Microsoft, Grade-A Farms",
       ETA: "5 min",
-      link: "https://stripe.com",
       imageLink: "https://thumbs.dreamstime.com/b/bags-potatoes-20594198.jpg",
     },
     {
@@ -37,7 +34,6 @@ export default function BuyPage() {
       bestBy: "2022-12-12",
       supplier: "Microsoft, Grade-A Farms",
       ETA: "5 min",
-      link: "https://stripe.com",
       imageLink:
         "https://extension.umaine.edu/publications/wp-content/uploads/sites/52/2019/06/tomatoes-for-sale.jpg",
     },
@@ -48,7 +44,6 @@ export default function BuyPage() {
       bestBy: "2022-12-12",
       supplier: "Microsoft, Grade-A Farms",
       ETA: "5 min",
-      link: "https://stripe.com",
       imageLink: "https://freerangestock.com/sample/2853/onions.jpg",
     },
     {
@@ -58,20 +53,18 @@ export default function BuyPage() {
       bestBy: "2022-12-12",
       supplier: "Microsoft, Grade-A Farms",
       ETA: "5 min",
-      link: "https://stripe.com",
       imageLink:
         "https://modernfarmer.com/wp-content/uploads/2022/05/shutterstock_636694300.jpg",
     },
     {
-      title: "Cheese",
-      price: "$10",
+      title: "Garlic",
+      price: "$50",
       quantity: "10 lbs",
       bestBy: "2022-12-12",
       supplier: "Microsoft, Grade-A Farms",
-      ETA: "5 min",
-      link: "https://stripe.com",
+      ETA: "50 min",
       imageLink:
-        "https://modernfarmer.com/wp-content/uploads/2022/05/shutterstock_636694300.jpg",
+        "https://images.ctfassets.net/3s5io6mnxfqz/19qmvvoQDYw7HMMj0Lj0Wp/fbd27a6c3f652ac5b541fea42250bb5c/AdobeStock_244542183.jpeg",
     },
   ];
 
@@ -81,12 +74,8 @@ export default function BuyPage() {
   );
 
   return (
-    <div className="max-w-5xl mx-auto px-8 flex flex-col items-center min-h-screen p-40">
-      <div className="flex flex-col items-center justify-center p-10">
-        <h1 className="text-4xl font-bold">Welcome back Joe!</h1>
-      </div>
-
-      <div className="search-div w-full items-start">
+    <div className="flex flex-col items-center min-h-screen p-40">
+      <div className="search-div w-[40%] items-start">
         <input
           type="text"
           placeholder="Search..."
@@ -95,11 +84,10 @@ export default function BuyPage() {
           onChange={(e) => setSearchTerm(e.target.value)}
         />
       </div>
-
       {filteredProjects.length > 0 ? (
         <HoverEffect items={filteredProjects} />
       ) : (
-        <div>No ingridients found.</div>
+        <div>No match found.</div>
       )}
     </div>
   );
